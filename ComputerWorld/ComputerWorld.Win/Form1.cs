@@ -16,16 +16,11 @@ namespace ComputerWorld.Win
         public Form1()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
             var productosBL = new ProductosBL();
             var listaDeProductos = productosBL.ObtenerProductos();
-            foreach (var producto in listaDeProductos)
-            {
-                MessageBox.Show(producto.Descripcion);
-            }
+
+            listaDeProductoBindingSource.DataSource = listaDeProductos;
         }
+
     }
 }

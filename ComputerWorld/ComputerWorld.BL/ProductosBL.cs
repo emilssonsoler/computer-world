@@ -8,26 +8,19 @@ namespace ComputerWorld.BL
 {
     public class ProductosBL
     {
-
+        Contexto _contexto;
+        public List<Producto> ListaDeProducto { get; set; }
+        public ProductosBL()
+        {
+            _contexto = new Contexto();
+            ListaDeProducto = new List<Producto>();
+        }
         public List<Producto> ObtenerProductos()
         {
-            var producto = new Producto();
-            producto.Id = 1;
-            producto.Descripcion = "Computadora 1";
-            producto.Precio = 100;
-            
 
-            var producto2 = new Producto();
-            producto2.Id = 2;
-            producto2.Descripcion = "Computadora 2";
-            producto2.Precio = 200;
-           
-
-
-            var listaDeProductos = new List<Producto>();
-            listaDeProductos.Add(producto);
-            listaDeProductos.Add(producto2);
-            return listaDeProductos;
+            ListaDeProducto = _contexto.Productos.ToList();
+            return ListaDeProducto; 
         }
+
     }
 }
