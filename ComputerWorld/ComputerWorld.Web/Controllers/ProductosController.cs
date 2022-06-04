@@ -1,4 +1,4 @@
-﻿using ComputerWorld.Web.Models;
+﻿using ComputerWorld.BL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,20 +12,9 @@ namespace ComputerWorld.Web.Controllers
         // GET: Productos
         public ActionResult Index()
         {
-            var producto = new ProductoModel();
-            producto.Id = 1;
-            producto.Descripcion = "Computadora 1";
-
-            var producto2 = new ProductoModel();
-            producto2.Id = 2;
-            producto2.Descripcion = "Computadora 2";
-
-            var listaDeProductos = new List<ProductoModel>();
-            listaDeProductos.Add(producto);
-            listaDeProductos.Add(producto2);
-
-
-
+            var productoBL = new ProductosBL();
+            var listaDeProductos = productoBL.ObtenerProductos();
+  
             return View(listaDeProductos);
         }
     }
