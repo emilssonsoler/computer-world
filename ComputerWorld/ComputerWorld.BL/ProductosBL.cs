@@ -22,5 +22,11 @@ namespace ComputerWorld.BL
             return ListaDeProducto; 
         }
 
+        public void GuardarProducto(Producto producto)
+        {
+            _contexto.Productos.Add(producto);
+            _contexto.SaveChanges();
+        }
+
     }
 }
