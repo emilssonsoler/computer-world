@@ -30,12 +30,49 @@ namespace ComputerWorld.WebAdmin.Controllers
             return View(nuevoProducto);
         }
 
-        //HttpPost el usuario manda de regreso
+        //HttpPost el usuario manda de regreso y guarda los cambios
         [HttpPost]
         public ActionResult Crear(Producto producto)
         {
             _productosBL.GuardarProducto(producto);
 
+            return RedirectToAction("Index");
+        }
+
+        //buscamos un id de producto y lo mandamos a la vista
+        public ActionResult Editar(int id) {
+
+           var producto = _productosBL.ObtenerProducto(id);
+            return View(producto); 
+        }
+
+        //guarda los cambios hechos de la vista editar
+        [HttpPost]
+        public ActionResult Editar(Producto producto)
+        {
+            _productosBL.GuardarProducto(producto);
+            return RedirectToAction("Index");
+        }
+
+        // muestra los detalles del producto
+        public ActionResult Detalle(int id)
+        {
+            var producto = _productosBL.ObtenerProducto(id);
+            return View(producto);
+        }
+
+        //Mandamos la informacion del producto que queremos eliminar
+        public ActionResult Eliminar(int id)
+        {
+            var producto = _productosBL.ObtenerProducto(id);
+            return View(producto);
+        }
+
+
+        [HttpPost]
+        public ActionResult Eliminar(Producto producto)
+        {
+            _productosBL.EliminarProducto(producto.Id);
             return RedirectToAction("Index");
         }
     }
