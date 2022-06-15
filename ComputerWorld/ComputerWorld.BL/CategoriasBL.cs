@@ -9,22 +9,22 @@ namespace ComputerWorld.BL
     public class CategoriasBL
     {
         Contexto _contexto;
-        public List<Categoria> ListaDeCategorias { get; set; }
+        public List<Categoria> ListadeCategorias { get; set; }
 
 
         //Constructor
         public CategoriasBL()
         {
             _contexto = new Contexto();
-            ListaDeCategorias = new List<Categoria>();
+            ListadeCategorias = new List<Categoria>();
         }
 
         //Obtener la lista de Categoria
         public List<Categoria> ObtenerCategorias()
         {
 
-            ListaDeCategorias = _contexto.Categorias.ToList();
-            return ListaDeCategorias;
+            ListadeCategorias = _contexto.Categorias.ToList();
+            return ListadeCategorias;
         }
 
         //Guardar Categoria

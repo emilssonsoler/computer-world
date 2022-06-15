@@ -18,7 +18,7 @@ namespace ComputerWorld.BL
         public List<Producto> ObtenerProductos()
         {
 
-            ListaDeProducto = _contexto.Productos.ToList();
+            ListaDeProducto = _contexto.Productos.Include("Categoria").ToList();
             return ListaDeProducto; 
         }
 
@@ -31,6 +31,7 @@ namespace ComputerWorld.BL
             {
                 var productoExistente = _contexto.Productos.Find(producto.Id);
                 productoExistente.Descripcion = producto.Descripcion;
+              
                 productoExistente.Precio = producto.Precio;
             }
            
@@ -38,7 +39,7 @@ namespace ComputerWorld.BL
         }
         public Producto ObtenerProducto(int id)
         {
-            var producto = _contexto.Productos.Find(id);
+            var producto = _contexto.Productos.Include("Categoria").FirstOrDefault(p => p.Id == id);
             return producto;
         }
 
