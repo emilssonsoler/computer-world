@@ -39,9 +39,23 @@ namespace ComputerWorld.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Crear(Producto producto)
         {
-            _productosBL.GuardarProducto(producto);
 
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (producto.CategoriaId == 0)
+                {
+                    ModelState.AddModelError("CategoriaId", "Seleccione un categoria"); 
+                     return View(producto);
+                }
+                _productosBL.GuardarProducto(producto);
+
+                return RedirectToAction("Index");
+            }
+            var categorias = _categoriasBL.ObtenerCategorias();
+
+            ViewBag.CategoriaId = new SelectList(categorias, "Id", "Descripcion");
+            return View(producto);
+            
         }
 
         //buscamos un id de producto y lo mandamos a la vista
@@ -60,8 +74,21 @@ namespace ComputerWorld.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Editar(Producto producto)
         {
-            _productosBL.GuardarProducto(producto);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (producto.CategoriaId == 0)
+                {
+                    ModelState.AddModelError("CategoriaId", "Seleccione un categoria");
+                    return View(producto);
+                }
+                _productosBL.GuardarProducto(producto);
+
+                return RedirectToAction("Index");
+            }
+            var categorias = _categoriasBL.ObtenerCategorias();
+
+            ViewBag.CategoriaId = new SelectList(categorias, "Id", "Descripcion");
+            return View(producto);
         }
 
         // muestra los detalles del producto

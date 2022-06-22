@@ -34,9 +34,19 @@ namespace ComputerWorld.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Crear(Categoria categoria)
         {
-            _categoriasBL.GuardarCategoria(categoria);
+            if (ModelState.IsValid)
+            {
+                if (categoria.Descripcion != categoria.Descripcion.Trim())
+                {
+                    ModelState.AddModelError("Descripcion", "La descripcion no debe contener espacion al inicio o al final");
+                    return View(categoria);
+                }
+                _categoriasBL.GuardarCategoria(categoria);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(categoria);
+           
         }
 
         //buscamos un id de categoria y lo mandamos a la vista
@@ -51,8 +61,18 @@ namespace ComputerWorld.WebAdmin.Controllers
         [HttpPost]
         public ActionResult Editar(Categoria categoria)
         {
-            _categoriasBL.GuardarCategoria(categoria);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                if (categoria.Descripcion != categoria.Descripcion.Trim())
+                {
+                    ModelState.AddModelError("Descripcion", "La descripcion no debe contener espacion al inicio o al final");
+                    return View(categoria);
+                }
+                _categoriasBL.GuardarCategoria(categoria);
+
+                return RedirectToAction("Index");
+            }
+            return View(categoria);
         }
 
         // muestra los detalles de la categoria
