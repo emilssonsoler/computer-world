@@ -22,6 +22,7 @@ namespace ComputerWorld.BL
             return ListaDeProducto; 
         }
 
+        //guardar producto
         public void GuardarProducto(Producto producto)
         {
             if(producto.Id == 0)
@@ -31,8 +32,8 @@ namespace ComputerWorld.BL
             {
                 var productoExistente = _contexto.Productos.Find(producto.Id);
                 productoExistente.Descripcion = producto.Descripcion;
-              
                 productoExistente.Precio = producto.Precio;
+                productoExistente.UrlImagen = producto.UrlImagen;
             }
            
             _contexto.SaveChanges();

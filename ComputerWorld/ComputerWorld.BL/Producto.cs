@@ -14,6 +14,7 @@ namespace ComputerWorld.BL
             Activo = true;
         }
         public int Id { get; set; }
+        [Display(Name = "Descripción")]
         [Required(ErrorMessage = "Ingrese la descripcion")]
         [MinLength (3,ErrorMessage ="Ingrese minimo 3 caracteres")]
         [MaxLength(20,ErrorMessage ="Ingrese maximo 20 caracteres")]
@@ -24,6 +25,10 @@ namespace ComputerWorld.BL
         public double Precio { get; set; }
         public int CategoriaId { get; set; }
         public Categoria Categoria { get; set; }
+
+        [Display(Name ="Imagen")]
+        public string UrlImagen { get; set; }
+
         public bool Activo { get; set; }
 
     }

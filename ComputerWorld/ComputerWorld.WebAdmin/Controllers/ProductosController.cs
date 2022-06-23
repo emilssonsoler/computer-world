@@ -37,7 +37,7 @@ namespace ComputerWorld.WebAdmin.Controllers
 
         //HttpPost el usuario manda de regreso y guarda los cambios
         [HttpPost]
-        public ActionResult Crear(Producto producto)
+        public ActionResult Crear(Producto producto, HttpPostedFileBase imagen)
         {
 
             if (ModelState.IsValid)
@@ -46,6 +46,11 @@ namespace ComputerWorld.WebAdmin.Controllers
                 {
                     ModelState.AddModelError("CategoriaId", "Seleccione un categoria"); 
                      return View(producto);
+                }
+
+                if (imagen != null)
+                {
+                    producto.UrlImagen = GuardarImagen(imagen);
                 }
                 _productosBL.GuardarProducto(producto);
 
@@ -72,7 +77,7 @@ namespace ComputerWorld.WebAdmin.Controllers
 
         //guarda los cambios hechos de la vista editar
         [HttpPost]
-        public ActionResult Editar(Producto producto)
+        public ActionResult Editar(Producto producto, HttpPostedFileBase imagen)
         {
             if (ModelState.IsValid)
             {
@@ -80,6 +85,10 @@ namespace ComputerWorld.WebAdmin.Controllers
                 {
                     ModelState.AddModelError("CategoriaId", "Seleccione un categoria");
                     return View(producto);
+                }
+                if (imagen != null)
+                {
+                    producto.UrlImagen = GuardarImagen(imagen);
                 }
                 _productosBL.GuardarProducto(producto);
 
@@ -113,5 +122,16 @@ namespace ComputerWorld.WebAdmin.Controllers
             _productosBL.EliminarProducto(producto.Id);
             return RedirectToAction("Index");
         }
+
+        //Guardar imagen
+        private string GuardarImagen(HttpPostedFileBase imagen)
+        {
+            string path = Server.MapPath("~/Imagenes/" + imagen.FileName);
+            imagen.SaveAs(path);
+
+            return ("/Imagenes/" + imagen.FileName);
+        }
+
+
     }
 }
