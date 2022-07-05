@@ -25,7 +25,7 @@ namespace ComputerWorld.WebAdmin.Controllers
             return View(listadeClientes);
         }
 
-        // vista crear
+        // Get crear
         public ActionResult Crear()
         {
             var nuevoCliente = new Cliente();
@@ -47,7 +47,7 @@ namespace ComputerWorld.WebAdmin.Controllers
         }
 
 
-        // vista editar
+        // Get editar
         public ActionResult Editar(int id)
         {
             var cliente = _clientesBL.ObtenerCliente(id);
@@ -68,7 +68,7 @@ namespace ComputerWorld.WebAdmin.Controllers
             return View(cliente);
         }
 
-        // vista detalle
+        // Get detalle
         public ActionResult Detalle(int id)
         {
             var cliente = _clientesBL.ObtenerCliente(id);
@@ -77,7 +77,7 @@ namespace ComputerWorld.WebAdmin.Controllers
         }
 
 
-        // vista eliminar
+        // Get eliminar
         public ActionResult Eliminar(int id)
         {
             var cliente = _clientesBL.ObtenerCliente(id);
