@@ -36,7 +36,7 @@ namespace ComputerWorld.BL
             }
             else
             {
-                var categoriaExistente = _contexto.Productos.Find(categoria.Id);
+                var categoriaExistente = _contexto.Categorias.Find(categoria.Id);
                 categoriaExistente.Descripcion = categoria.Descripcion;
                 
             }
