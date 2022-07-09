@@ -18,8 +18,24 @@ namespace ComputerWorld.BL
         public List<Producto> ObtenerProductos()
         {
 
-            ListaDeProducto = _contexto.Productos.Include("Categoria").ToList();
+            ListaDeProducto = _contexto.Productos
+                .Include("Categoria")
+                .OrderBy(r => r.Categoria.Descripcion)
+                .ThenBy(r => r.Descripcion)
+                .ToList();
+
             return ListaDeProducto; 
+        }
+
+        public List<Producto> ObtenerProductosActivos()
+        {
+            ListaDeProducto = _contexto.Productos
+                .Include("Categoria")
+                .Where(r => r.Activo == true)
+                .OrderBy(r => r.Descripcion)
+                .ToList(); ;
+
+            return ListaDeProducto;
         }
 
         //guardar producto
@@ -43,6 +59,8 @@ namespace ComputerWorld.BL
             var producto = _contexto.Productos.Include("Categoria").FirstOrDefault(p => p.Id == id);
             return producto;
         }
+
+       
 
         public void EliminarProducto(int id)
         {

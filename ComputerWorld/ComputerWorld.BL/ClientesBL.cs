@@ -23,7 +23,19 @@ namespace ComputerWorld.BL
         //obtener cliente
         public List<Cliente> ObtenerClientes()
         {
-            ListaDeClientes = _contexto.Clientes.ToList();
+            ListaDeClientes = _contexto.Clientes
+                .OrderBy(r => r.Nombre)
+                .ToList();
+            return ListaDeClientes;
+        }
+
+        //obtener cliente activos
+        public List<Cliente> ObtenerClientesActivos()
+        {
+            ListaDeClientes = _contexto.Clientes
+                .Where(r => r.Activo == true)
+                .OrderBy(r => r.Nombre)
+                .ToList();
             return ListaDeClientes;
         }
 
