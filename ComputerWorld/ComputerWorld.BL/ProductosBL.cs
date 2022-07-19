@@ -49,7 +49,11 @@ namespace ComputerWorld.BL
                 var productoExistente = _contexto.Productos.Find(producto.Id);
                 productoExistente.Descripcion = producto.Descripcion;
                 productoExistente.Precio = producto.Precio;
+               
                 productoExistente.UrlImagen = producto.UrlImagen;
+
+               
+                productoExistente.Activo = producto.Activo;
             }
            
             _contexto.SaveChanges();
