@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ComputerWorld.WebAdmin.Controllers
 {
+    [Authorize]
     public class OrdenDetalleController : Controller
     {
         OrdenesBL _ordenBL;

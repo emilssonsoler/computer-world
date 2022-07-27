@@ -7,6 +7,7 @@ using ComputerWorld.BL;
 
 namespace ComputerWorld.WebAdmin.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
        
