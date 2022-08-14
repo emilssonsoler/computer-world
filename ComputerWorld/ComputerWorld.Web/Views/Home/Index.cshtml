@@ -1,8 +1,7 @@
-﻿
-@model List<ComputerWorld.BL.Producto>
+﻿@model List<ComputerWorld.BL.Producto>
 
 @{
-    ViewBag.Title = "Inicio";
+    ViewBag.Title = "Index";
 }
 
 <div class="banner">
@@ -19,7 +18,7 @@
                         <!-- Text title -->
                         <h1 class="title">Computer World<br>Dreams</h1>
                         <!-- /Text title -->
-                        <div class="button"><a href="#">Ver Detalles</a></div>
+                        <div class="button"><a href="#">See Details</a></div>
                     </div>
                 </div>
                 <!-- /Texts container -->
@@ -29,8 +28,8 @@
                 <img src="~/images/slider-2.jpg" class="img-responsive" alt="" />
                 <div class="slide_content">
                     <div class="slide_content_wrap">
-                        <h1 class="title">Computer World<br>Dreams</h1>
-                        <div class="button"><a href="#">Ver Detalles</a></div>
+                        <h1 class="title">Computer World<br>The Best</h1>
+                        <div class="button"><a href="#">See Details</a></div>
                     </div>
                 </div>
             </div>
@@ -79,11 +78,22 @@
 		    		}
 		    	}
 		    });
+
 		});
         </script>
         <script type="text/javascript" src="~/js/jquery.flexisel.js"></script>
     </div>
 </div>
+
+
+
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
 
 <html>
 
@@ -95,19 +105,20 @@
 
 
                     @foreach (var producto in Model
-                .Where(r => r.Categoria.Descripcion == "Escritorio" || r.Categoria.Descripcion == "Laptop")
-                .Take(4)
-                .OrderBy(r => Guid.NewGuid()))
+                        .Where(r => r.Categoria.Descripcion == "Computadoras Personales")
+                        .Take(4)
+                        .OrderBy(r => Guid.NewGuid())
+                        )                                
                     {
 
                         <div class="col-md-3 shop_box">
                             <a href="single.html">
                                 <img src="@(ViewBag.adminWebsiteUrl + producto.UrlImagen)" class="img-responsive" alt="" />
                                 <span class="new-box">
-                                    <span class="new-label">Nuevo</span>
+                                    <span class="new-label">New</span>
                                 </span>
                                 <span class="sale-box">
-                                    <span class="sale-label">Rebaja!</span>
+                                    <span class="sale-label">Sale!</span>
                                 </span>
                                 <div class="shop_desc">
                                     <h3><a href="#">@producto.Descripcion</a></h3>
@@ -115,10 +126,14 @@
                                     <span class="reducedfrom">L.0</span>
                                     <span class="actual">L. @producto.Precio</span><br>
                                     <ul class="buttons">
-                                        <li class="cart"><a href="#">Agregar al Carrito</a></li>
-                                        <li class="shop_btn"><a href="#">Leer mas</a></li>
-                                        <div class="clear"> </div>
-                                    </ul>
+                                      
+                                            <li class="shop_btn"><a href="#">Read More</a></li>
+                                            <div class="clear"> </div>
+                                        </ul>
+
+                                    <a id="btn_add" href="@Url.Action("Agregar", "Carrito", new { id=producto.Id})" class="btn btn-info btn-lg" style="margin-left:60px">
+                                        <span class="glyphicon glyphicon-shopping-cart"></span> 
+                                    </a>
                                 </div>
                             </a>
                         </div>
@@ -149,41 +164,35 @@
             <div class="row">
                 <div class="col-md-3">
                     <ul class="footer_box">
-                        <h4>Products</h4>
-                        <li><a href="#">Mens</a></li>
-                        <li><a href="#">Womens</a></li>
-                        <li><a href="#">Youth</a></li>
+                        <h4>Productos</h4>
+                        <li><a href="#">Computadoras Personales</a></li
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <ul class="footer_box">
-                        <h4>About</h4>
-                        <li><a href="#">Careers and internships</a></li>
-                        <li><a href="#">Sponserships</a></li>
-                        <li><a href="#">team</a></li>
-                        <li><a href="#">Catalog Request/Download</a></li>
+                        <h4>Sobre nosotros</h4>
+                        <li><a href="#">Empleos</a></li>
+                        <li><a href="#">Equipo</a></li>
+                        <li><a href="#">Download</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <ul class="footer_box">
-                        <h4>Customer Support</h4>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Shipping and Order Tracking</a></li>
-                        <li><a href="#">Easy Returns</a></li>
-                        <li><a href="#">Warranty</a></li>
-                        <li><a href="#">Replacement Binding Parts</a></li>
+                        <h4>Atencion al Cliente</h4>
+                        <li><a href="#">Contactanos</a></li>
+                        <li><a href="#">Compras</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <ul class="footer_box">
-                        <h4>Newsletter</h4>
+                        <h4>Noticias</h4>
                         <div class="footer_search">
                             <form>
-                                <input type="text" value="Enter your email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
-                                <input type="submit" value="Go">
+                                <input type="text" value="Ingrese su correo" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter your email';}">
+                                <input type="submit" value="Ir">
                             </form>
                         </div>
-                        <ul class="social">
+                        <ul class="Redes Sociales">
                             <li class="facebook"><a href="#"><span> </span></a></li>
                             <li class="twitter"><a href="#"><span> </span></a></li>
                             <li class="instagram"><a href="#"><span> </span></a></li>
@@ -196,10 +205,10 @@
             </div>
             <div class="row footer_bottom">
                 <div class="copy">
-                    <p>© 2014 Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a></p>
+                    <p>© 2022 Derechos reservados by <a href="http://w3layouts.com" target="_blank">Computer World</a></p>
                 </div>
                 <dl id="sample" class="dropdown">
-                    <dt><a href="#"><span>Change Region</span></a></dt>
+                    <dt><a href="#"><span>Region</span></a></dt>
                     <dd>
                         <ul>
                             <li><a href="#">Australia<img class="flag" src="images/as.png" alt="" /><span class="value">AS</span></a></li>
@@ -217,3 +226,4 @@
 </body>
 
 </html>
+

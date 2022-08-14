@@ -18,6 +18,7 @@ namespace ComputerWorld.Web.Controllers
 
             ViewBag.adminWebsiteUrl = ConfigurationManager.AppSettings["adminWebsiteUrl"];
 
+
             return View(listadeProductos);
         }
     }
